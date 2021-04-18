@@ -1,0 +1,25 @@
+{# ######################################## MODAL SIGN OFF ##################################### #}
+<div class="modal fade" id="modal_sign_off" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      {# ------------------------------------ MODAL-HEADER ------------------------------------- #}
+      <div class="modal-header">
+        <h5 class="modal-title"><i class="fas fa-sign-out-alt"></i> CERRAR SESIÓN</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" title="Cerrar"></button>
+      </div>
+      {# -------------------------------------- MODAL-BODY ------------------------------------- #}
+      <div class="modal-body">
+        <p>Estas a punto de cerrar sesión</p>
+      </div>
+      {# ------------------------------------- MODAL-FOOTER ------------------------------------ #}
+      <div class="modal-footer justify-content-center">
+        <div class="col-6 pe-1">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" title="Volver">Volver</button>
+        </div>
+        <div class="col-6 ps-1">
+          <a href="/logout" class="btn btn-outline-danger" title="Cerrar sesión">Cerrar sesión</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

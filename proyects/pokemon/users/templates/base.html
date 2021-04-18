@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokemon</title>
+  <link rel="icon" href="{% static 'favicon.ico' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/pokemon.css' %}">
+</head>
+
+<body>
+  {# ######################################## CONTENT ########################################## #}
+  <div id="main_container">
+    <img src="{% static 'images/background.jpg' %}" id="background_home" alt="Background">
+    <div class="content_view animate__animated animate__jackInTheBox">
+      <img src="{% static 'images/logo.png' %}" id="logo" class="animate__animated" height="100" class="mb-4" alt="POKEMON">
+      {% block "content" %}{% endblock %}
+    </div>
+  </div>
+  {# ########################################## MODALS ######################################### #}
+  {# ----------------------- MODAL SIGN OFF ---------------------- #}
+  {% include 'modals/modal_sign_off.html' %}
+  {% block "modals" %}{% endblock %}
+  {# ########################################## SCRIPTS ######################################## #}
+  {# ---------------------- BOOTSTRAP v5.0.0 --------------------- #}
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  {# ------------------------- GENERAL JS ------------------------ #}
+  <script src="{% static 'js/base.js' %}"></script>
+  {% block "scripts" %}{% endblock %}
+</body>
+
+</html>

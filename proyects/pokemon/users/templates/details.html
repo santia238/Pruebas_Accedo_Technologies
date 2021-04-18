@@ -1,0 +1,26 @@
+{# ####################################### EXTEND BASE ######################################### #}
+{% extends "base.html" %}
+{# #################################### LOAD STATIC FILES ###################################### #}
+{% load static %}
+
+{% block "content" %}
+  <div class="card">
+    <table id="details_pokemon">
+      <thead>
+        <tr>
+          <th class="name"></th>
+          <th>Habilidades</td>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <div class="mt-3">
+    <button type="button" class="btn btn-danger me-1" data-bs-toggle="modal" data-bs-target="#modal_sign_off">Cerrar sesión</button>
+    <a href="/" class="btn btn-primary ms-1">Ver pokemones</a>
+  </div>
+{% endblock %}
+
+{% block "scripts" %}
+  <script src="{% static 'js/details.js' %}"></script>
+{% endblock %}

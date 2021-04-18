@@ -1,0 +1,24 @@
+{# ####################################### EXTEND BASE ######################################### #}
+{% extends "base.html" %}
+{# #################################### LOAD STATIC FILES ###################################### #}
+{% load static %}
+
+{% block "content" %}
+  <table id="list_pokemon" width="100%">
+    <tbody></tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2">Mostrando <span id="initial_range"></span> a <span id="final_range"></span> de <span id="total_pokemon"></span> pokemones</td>
+        <td colspan="2">Página <span id="page_table"></span> de <span id="total_pages"></span></td>
+      </tr>
+    </tfoot>
+  </table>
+  <div class="cont_buttons">
+    <button type="button" id="btn_previous" class="btn btn-primary me-1" disabled>Anterior</button>
+    <button type="button" id="btn_next" class="btn btn-primary ms-1">Siguiente</button>
+  </div>
+{% endblock %}
+
+{% block "scripts" %}
+  <script src="{% static 'js/home.js' %}"></script>
+{% endblock %}
