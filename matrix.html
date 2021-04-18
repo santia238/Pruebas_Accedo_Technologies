@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { padding: 30px; }
+    table { width: 100%; text-align: center; border-collapse: collapse; }
+    table td { border: 1px solid #333; padding: 12px; }
+    table td:hover { background: #ddd; }
+    .disabled { background: #aaa; }
+    .selected { padding: 0; background: rgb(43, 184, 250); }
+    .flex { display: flex; justify-content: space-between; align-items: center; }
+  </style>
+  <title>MATRIX</title>
+</head>
+<body>
+
+  <script>
+
+    var random_nums = [];
+    createMatrix();
+    function createMatrix() {
+      var matrix_content = '';
+      for (let i = 0; i < 5; i++) {
+        let row_content = '';
+        for (let j = 0; j < 10; j++) { 
+          row_content += `<td onclick="disabledCells(${i},${j})"></td>`;
+          random_nums.push((j+(i*10))+1);
+        }  
+        matrix_content += `<tr>${row_content}</tr>`;
+      }
+      document.body.innerHTML += `
+        <table id="matrix"><tbody>${matrix_content}</tbody></table>
+        <div class="flex">
+          <p>Casillas seleccionadas: <span id="countSelected">0</span></p>
+          <p>Aleatorio: <span id="randomNumber">0</span></p>
+          <button type="button" onclick="getRandom()">Generar casilla aleatoria</button>
+        </div>
+      `;
+    }
+    
+    var counter = 0;
+    function disabledCells(row,col) {
+      let cell_selected = document.querySelector(`#matrix tbody > tr:nth-child(${row+1}) > td:nth-child(${col+1})`);
+      if (!cell_selected.classList.contains('disabled') && counter < 5) {
+        cell_selected.classList.add("selected");
+        cell_selected.innerHTML = "X";
+        // RECORRER CELDAS DE LA FILA
+        document.querySelectorAll(`#matrix tbody > tr:nth-child(${row+1}) > td`).forEach((element,i) => { 
+          let cell = ((row*10)+i)+1;
+          let index = random_nums.indexOf(cell);
+          if (index != -1) { random_nums.splice(index,1) }
+          element.classList.add("disabled");
+        });
+        // RECORRER CELDAS DE LA COLUMNA
+        document.querySelectorAll(`#matrix tbody > tr > td:nth-child(${col+1})`).forEach((element,i) => { 
+          let cell = (col+1)+(i*10);
+          let index = random_nums.indexOf(cell);
+          if (index != -1) { random_nums.splice(index,1) }
+          element.classList.add("disabled");
+        });
+        counter++;
+        document.getElementById("countSelected").innerHTML = counter;
+      }
+    }
+
+    function getRandom() {
+      if (random_nums.length > 0) {
+        let generate = Math.floor(Math.random() * random_nums.length);
+        let random = random_nums[generate];
+        let row = Math.floor(random/10) + (random%10 == 0 ? -1 : 0);
+        let col = random%10 == 0 ? 9 : (random%10)-1;
+        document.getElementById("randomNumber").innerHTML = random;
+        disabledCells(row,col);
+      }
+    }
+
+  </script>
+</body>
+</html>
